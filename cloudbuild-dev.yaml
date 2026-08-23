@@ -2,11 +2,13 @@ steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['build', '-o', 'main', 'main.go']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/my-repository/sample-app:v2.0', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/qwiklabs-gcp-02-36532bc8e7b0/my-repository/sample-app:v2.0', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/my-repository/sample-app:v2.0']
+  args: ['push', 'us-central1-docker.pkg.dev/qwiklabs-gcp-02-36532bc8e7b0/my-repository/sample-app:v2.0']
 - name: 'gcr.io/cloud-builders/gkubectl'
   args: ['apply', '-f', 'dev/deployment.yaml', '-n', 'dev']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=hello-cluster'
+options:
+  logging: CLOUD_LOGGING_ONLY
