@@ -1,6 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
-  args: ['build', '-o', 'main', 'main.go']
+  args: ['install', '.']
+  env: ['PROJECT_ROOT=sample-app']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-central1-docker.pkg.dev/qwiklabs-gcp-02-36532bc8e7b0/my-repository/sample-app:v2.0', '.']
 - name: 'gcr.io/cloud-builders/docker'
