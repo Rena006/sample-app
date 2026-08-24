@@ -4,17 +4,17 @@ metadata:
   name: production-deployment
   namespace: prod
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: production-deployment
+      app: production-app
   template:
     metadata:
       labels:
-        app: production-deployment
+        app: production-app
     spec:
       containers:
-      - name: production-deployment
+      - name: production-container
         image: us-central1-docker.pkg.dev/qwiklabs-gcp-02-36532bc8e7b0/my-repository/hello-cloudbuild:v2.0
         ports:
         - containerPort: 8080
